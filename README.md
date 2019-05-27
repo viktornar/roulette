@@ -57,3 +57,7 @@ Basically, Hooks API was used since application is not complex and it is enough 
 
 For more details look at **create-react-app** documentation.
 
+## Knowan bugs
+
+* When results comes as 0 roulette never stops :(
+
