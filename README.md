@@ -2,7 +2,7 @@
 
 Code challenge for creating roulette.
 
-
+![picture](images/app-view.png)
 
 ## Application structure
 
