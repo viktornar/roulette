@@ -24,17 +24,15 @@ const InfoBox: React.FunctionComponent<IInfoBoxProps> = ({ countDownTime, gameLo
         {
           !isEmpty(gameLogs) ? (
             <pre className="container__events-log">
-              <p>
-                {
-                  gameLogs.map(({id, result})=> (
-                    `Game ${id} ended with ${result} as result...`
-                  ))
-                }
-              </p>
+              {
+                gameLogs.map(({id, result})=> (
+                  <p>{`Game ${id} ended with ${result} as result...`}</p>
+                ))
+              }
             </pre>
             ) : (
               <pre className="container__events-log">
-                Waiting for new game :)
+                <p>Waiting for new game :)</p>
               </pre>
             )
         }
