@@ -5,6 +5,8 @@ import { Route } from 'router5';
 import NotFoundPage from './notFound/NotFoundPage';
 import RoulettePage from './roulette/RoulettePage';
 
+import './App.scss';
+
 interface IAppProps {
   route: Route
 }
@@ -21,6 +23,10 @@ const App: React.FunctionComponent<IAppProps> = ({ route }) => {
 
 export default () => (
   <RouteNode nodeName="">
-      {({ route }) => <App route={route} />}
+    {({ route }) => (
+      <div className="App">
+        <App route={route} />
+      </div>
+    )}
   </RouteNode>
 );

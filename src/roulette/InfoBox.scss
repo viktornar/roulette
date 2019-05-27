@@ -1,0 +1,13 @@
+@import "../core/styles/variables";
+
+.InfoBox {
+  background-color: white;
+  transition: box-shadow 200ms ease-in-out;
+  width: 100%;
+  box-shadow: $box-shadow;
+  height: 100%;
+
+  &__container {
+    padding: 20px;
+  }
+}

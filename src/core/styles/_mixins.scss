@@ -1,0 +1,25 @@
+@mixin flex($grow: 1, $shrink: 1, $basis: auto) {
+  flex: $grow $shrink $basis;
+}
+
+@mixin antialias($apply:true) {
+  @if ($apply) {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+@mixin montserrat($weight, $style) {
+  font-family: "Montserrat", sans-serif;
+  font-weight: $weight;
+  font-style: $style;
+}
+
+@mixin primary-font($weight: $fw-regular, $style: normal) {
+  @include montserrat($weight, $style);
+}
