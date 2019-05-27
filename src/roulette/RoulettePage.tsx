@@ -11,10 +11,9 @@ const RoulettePage: React.FunctionComponent = () => {
     gameResult,
     countDown,
     logs,
-    nextGame
   } = useRouletteApi();
 
-  console.log(nextGame);
+  console.log(logs);
 
   const { result } = gameResult;
   const { minutes, seconds } = countDown;

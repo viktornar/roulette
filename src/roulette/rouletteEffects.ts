@@ -1,25 +1,25 @@
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { API_URL } from '../core/settings';
 import { startTimer } from '../core/utils';
 
 export function useRouletteApi() {
-const [nextGame, setNextGame] = useState({
-  id: null,
-  startDelta: null,
-  startTime: ''
-});
+  const [nextGame, setNextGame] = useState({
+    id: null,
+    startDelta: null,
+    startTime: ''
+  });
 
-const [gameResult, setGameResult] = useState({
-  result: null
-});
+  const [gameResult, setGameResult] = useState({
+    result: null
+  });
 
-const [countDown, setCountDown] = useState({
-  minutes: 0,
-  seconds: 0
-});
+  const [countDown, setCountDown] = useState({
+    minutes: 0,
+    seconds: 0
+  });
 
-const [logs, setLogs] = useState([]);
+  const [logs, setLogs] = useState([]);
 
   // Will be executed only once.
   useEffect(() => {
@@ -49,9 +49,11 @@ const [logs, setLogs] = useState([]);
                   });
 
                   // @ts-ignore
-                  setLogs([
-                    ...logs, gameResultData
-                  ]);
+                  setLogs(prevLogs => {
+                    // Object.assign would also work
+                    return [...prevLogs, gameResultData];
+                  });
+
                   fetchGame();
                 });
             }
@@ -63,9 +65,9 @@ const [logs, setLogs] = useState([]);
   }, []);
 
   return {
-    nextGame,
-    gameResult,
     countDown,
-    logs
+    gameResult,
+    logs,
+    nextGame,
   };
 }

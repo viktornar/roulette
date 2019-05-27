@@ -14,7 +14,6 @@ interface IInfoBoxProps {
 }
 
 const InfoBox: React.FunctionComponent<IInfoBoxProps> = ({ countDownTime, gameLogs }) => {
-  console.log(gameLogs);
   return (
     <div className="InfoBox">
       <div className="InfoBox__container container">
@@ -25,11 +24,13 @@ const InfoBox: React.FunctionComponent<IInfoBoxProps> = ({ countDownTime, gameLo
         {
           !isEmpty(gameLogs) ? (
             <pre className="container__events-log">
-              {
-                 gameLogs.map(({id, result})=> (
-                  `Game ${id} ended with ${result} as result...`
-                ))
-              }
+              <p>
+                {
+                  gameLogs.map(({id, result})=> (
+                    `Game ${id} ended with ${result} as result...`
+                  ))
+                }
+              </p>
             </pre>
             ) : (
               <pre className="container__events-log">
