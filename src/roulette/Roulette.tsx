@@ -12,7 +12,7 @@ interface IRouletteProps {
   rouletteSize: number,
   rouletteWidth: number,
   textSize: number,
-  spinToIndex: number,
+  spinToIndex: number | null,
 }
 
 export default class Roulette extends React.PureComponent<IRouletteProps> {
@@ -53,8 +53,12 @@ export default class Roulette extends React.PureComponent<IRouletteProps> {
 
   public componentDidUpdate() {
     this.paint();
-    this.initializeRotation();
-    this.rotateWheel();
+    const { spinToIndex } = this.props;
+
+    if (spinToIndex) {
+      this.initializeRotation();
+      this.rotateWheel();
+    }
   }
 
   private getCanvasContext(): CanvasRenderingContext2D | null {
@@ -134,7 +138,7 @@ export default class Roulette extends React.PureComponent<IRouletteProps> {
     ctx.lineTo(rouletteRadius + 4, rouletteRadius - (this.outsideRadius + 5));
     ctx.lineTo(rouletteRadius + 4, rouletteRadius - (this.outsideRadius - 5));
     ctx.lineTo(rouletteRadius + 9, rouletteRadius - (this.outsideRadius - 5));
-    ctx.lineTo(rouletteRadius + 0, rouletteRadius - (this.outsideRadius - 13));
+    ctx.lineTo(rouletteRadius, rouletteRadius - (this.outsideRadius - 13));
     ctx.lineTo(rouletteRadius - 9, rouletteRadius - (this.outsideRadius - 5));
     ctx.lineTo(rouletteRadius - 4, rouletteRadius - (this.outsideRadius - 5));
     ctx.lineTo(rouletteRadius - 4, rouletteRadius - (this.outsideRadius + 5));
@@ -143,16 +147,19 @@ export default class Roulette extends React.PureComponent<IRouletteProps> {
 
   private initializeRotation() {
     const { spinToIndex } = this.props;
-    const currentWheelFieldIndex = this.getWheelFieldIndex();
-    const randomWheelRotationTimes = Math.floor(Math.random() * 2) + 1;
-    const multipleWheelRotationAngle =
-      ROULETTE_OPTIONS.length *
-      randomWheelRotationTimes *
-      arcToDegree(this.arc);
 
-    const diffBetweenFieldIndex = (currentWheelFieldIndex - spinToIndex) + ROULETTE_OPTIONS.length;
-    const spinToAngle = diffBetweenFieldIndex * arcToDegree(this.arc) + multipleWheelRotationAngle;
-    this.spinAngleTotal = spinToAngle  * Math.PI / 180;
+    if (spinToIndex) {
+      const currentWheelFieldIndex = this.getWheelFieldIndex();
+      const randomWheelRotationTimes = Math.floor(Math.random() * 2) + 1;
+      const multipleWheelRotationAngle =
+        ROULETTE_OPTIONS.length *
+        randomWheelRotationTimes *
+        arcToDegree(this.arc);
+
+      const diffBetweenFieldIndex = (currentWheelFieldIndex - spinToIndex) + ROULETTE_OPTIONS.length;
+      const spinToAngle = diffBetweenFieldIndex * arcToDegree(this.arc) + multipleWheelRotationAngle;
+      this.spinAngleTotal = spinToAngle  * Math.PI / 180;
+    }
   }
 
   private rotateWheel() {
