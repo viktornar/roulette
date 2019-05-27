@@ -10,10 +10,9 @@ const RoulettePage: React.FunctionComponent = () => {
   const {
     gameResult,
     countDown,
-    logs,
+    gameLogs,
+    apiError,
   } = useRouletteApi();
-
-  console.log(logs);
 
   const { result } = gameResult;
   const { minutes, seconds } = countDown;
@@ -33,7 +32,8 @@ const RoulettePage: React.FunctionComponent = () => {
       <div className="RoulettePage__right-side">
         <InfoBox
           countDownTime={countDownTime}
-          gameLogs={logs}
+          gameLogs={gameLogs}
+          apiError={apiError}
         />
       </div>
     </div>

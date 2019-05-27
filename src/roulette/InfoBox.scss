@@ -1,5 +1,19 @@
 @import "../core/styles/variables";
 
+%teaser {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+
+
+  border-radius: 4px;
+}
+
 .InfoBox {
   background-color: white;
   transition: box-shadow 200ms ease-in-out;
@@ -15,18 +29,16 @@
         border-bottom: solid silver 2px;
       }
 
-      &__events-log{
-        display: block;
-        padding: 9.5px;
-        margin: 0 0 10px;
-        font-size: 13px;
-        line-height: 1.42857143;
-        color: #333;
-        word-break: break-all;
-        word-wrap: break-word;
-        background-color: #f5f5f5;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+      &__error {
+        @extend %teaser;
+        background-color: $red-dark;
+        border: 1px solid $orange;
+      }
+
+      &__events-log {
+        @extend %teaser;
+        background-color: $grey;
+        border: 1px solid $grey-lite;
       }
     }
   }
