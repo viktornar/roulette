@@ -4,9 +4,8 @@
 
 body {
   @include antialias();
-
   @include primary-font;
-  font-size: 1.4rem;
+  font-size: 1rem;
   background-color: $blue-light;
   margin: 0;
   padding: 0;

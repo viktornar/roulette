@@ -24,6 +24,8 @@ const RoulettePage: React.FunctionComponent = () => {
     seconds: 0
   });
 
+  const [logs, setLogs] = useState([]);
+
   // Will be executed only once.
   useEffect(() => {
     // Fetch next game, calculate when to fire next request
@@ -50,6 +52,11 @@ const RoulettePage: React.FunctionComponent = () => {
                   setGameResult({
                     result: gameResultData.result
                   });
+
+                  // @ts-ignore
+                  setLogs([
+                    ...logs, gameResultData
+                  ]);
                   fetchGame();
                 })
                 .catch((error) => {
@@ -86,6 +93,7 @@ const RoulettePage: React.FunctionComponent = () => {
       <div className="RoulettePage__right-side">
         <InfoBox
           countDownTime={countDownTime}
+          gameLogs={logs}
         />
       </div>
     </div>
